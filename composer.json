@@ -5,7 +5,10 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"orangehill/iseed": "dev-master",
+		"way/generators": "~2.0",
+		"xethron/migrations-generator": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

@@ -122,6 +122,9 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
+		'Orangehill\Iseed\IseedServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider',
+'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
 	),
 
 	/*
