@@ -22,8 +22,19 @@ Route::get('/kategoriMotor', function(){
 	return('ha');
 });
 
-Route::post('/kategoriMotorAdd', ['uses'=>'KategoriMotorController@create']);
+Route::post('/kategoriMotorAdd',['uses'=>'KategoriMotorController@create']);
 
 Route::post('/kategoriMotorEdit',['uses'=>'KategoriMotorController@update']);
 
 Route::post('/kategoriMotorDelete',['uses'=>'KategoriMotorController@delete']);
+
+Route::get('/kategoriSC', function(){
+	//return KategoriMotor::all();
+	return('ha');
+});
+
+Route::post('/kategoriSCAdd', ['uses'=>'KategoriSCController@create']);
+
+Route::post('/kategoriSCEdit',['uses'=>'KategoriSCController@update']);
+
+Route::post('/kategoriSCDelete',['uses'=>'KategoriSCController@delete']);

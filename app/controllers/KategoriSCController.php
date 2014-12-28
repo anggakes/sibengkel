@@ -1,6 +1,6 @@
 <?php
 
-class KategoriMotorController extends BaseController {
+class KategoriSCController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ class KategoriMotorController extends BaseController {
 	public function create()
 	{	
 		 $rules = array(
-				'nama'     		 => 'required|unique:Kategori_Motor', // just a normal required validation			
+				'nama'     		 => 'required|unique:Kategori_suku_cadang', // just a normal required validation			
 				);
 
 		 $validator = Validator::make(Input::all(), $rules);
@@ -39,9 +39,9 @@ class KategoriMotorController extends BaseController {
 		 else {	
 			DB::beginTransaction();
 
-			$KategoriMotor = new KategoriMotor;
-			$KategoriMotor->nama = Input::get('nama');
-			$KategoriMotor->save();
+			$KategoriSC = new KategoriSC;
+			$KategoriSC->nama = Input::get('nama');
+			$KategoriSC->save();
 		
 			DB::commit();
 		}
@@ -69,12 +69,13 @@ class KategoriMotorController extends BaseController {
 		 else {
 		 	DB::beginTransaction();
 
-			$KategoriMotor = KategoriMotor::find(Input::get('id'));
-			$KategoriMotor->nama=Input::get('nama');
-			$KategoriMotor->save();
-		 	return $KategoriMotor;
+			$KategoriSC = KategoriSC::find(Input::get('id'));
+			$KategoriSC->nama=Input::get('nama');
+			$KategoriSC->save();
 
 		 	DB::commit();
+
+		 	return $KategoriSC;
 	 	}
 	}
 
@@ -99,11 +100,12 @@ class KategoriMotorController extends BaseController {
 		 else {
 		 	DB::beginTransaction();
 
-			$KategoriMotor = KategoriMotor::find(Input::get('id'));
-			$KategoriMotor->delete();
-		 	return $KategoriMotor;
+			$KategoriSC = KategoriSC::find(Input::get('id'));
+			$KategoriSC->delete();
 
 		 	DB::commit();
+
+		 	return $KategoriSC;
 		 }
 	}
 
