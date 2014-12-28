@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function()
+Route::post('/', function()
 {
-	return View::make('hello');
+	var_dump(Input::all());
 });
