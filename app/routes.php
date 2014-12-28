@@ -19,7 +19,7 @@ Route::get('/', function()
 
 Route::get('/kategoriMotor', function(){
 	//return KategoriMotor::all();
-	return('ha');
+	return kategoriMotor::all();
 });
 
 Route::post('/kategoriMotorAdd',['uses'=>'KategoriMotorController@create']);
@@ -30,7 +30,7 @@ Route::post('/kategoriMotorDelete',['uses'=>'KategoriMotorController@delete']);
 
 Route::get('/kategoriSC', function(){
 	//return KategoriMotor::all();
-	return('ha');
+	return kategoriSC::all();
 });
 
 Route::post('/kategoriSCAdd', ['uses'=>'KategoriSCController@create']);
