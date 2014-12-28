@@ -15,3 +15,15 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+
+Route::get('/kategoriMotor', function(){
+	//return KategoriMotor::all();
+	return('ha');
+});
+
+Route::post('/kategoriMotorAdd', ['uses'=>'KategoriMotorController@create']);
+
+Route::post('/kategoriMotorEdit',['uses'=>'KategoriMotorController@update']);
+
+Route::post('/kategoriMotorDelete',['uses'=>'KategoriMotorController@delete']);
