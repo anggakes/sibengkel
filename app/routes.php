@@ -28,6 +28,14 @@ Route::post('/kategoriMotorEdit',['uses'=>'KategoriMotorController@update']);
 
 Route::post('/kategoriMotorDelete',['uses'=>'KategoriMotorController@delete']);
 
+Route::post('/kategoriMotorSearch',['uses'=>'KategoriMotorController@search']);
+
+Route::get('/tambah_kategori', function()
+{
+	return View::make('km-add');
+});
+
+
 Route::get('/kategoriSC', function(){
 	//return KategoriMotor::all();
 	return kategoriSC::all();

@@ -47,6 +47,13 @@ class KategoriMotorController extends BaseController {
 		}
 	}
 
+	public function search()
+	{
+		$user = DB::table('Kategori_motor')->where('id', Input::get('id'))->first();
+
+		return($user->nama);
+	}
+
 	public function update()
 	{
 		 $rules = array(
@@ -72,9 +79,10 @@ class KategoriMotorController extends BaseController {
 			$KategoriMotor = KategoriMotor::find(Input::get('id'));
 			$KategoriMotor->nama=Input::get('nama');
 			$KategoriMotor->save();
-		 	return $KategoriMotor;
 
 		 	DB::commit();
+
+		 	return $KategoriMotor;
 	 	}
 	}
 
@@ -101,11 +109,13 @@ class KategoriMotorController extends BaseController {
 
 			$KategoriMotor = KategoriMotor::find(Input::get('id'));
 			$KategoriMotor->delete();
-		 	return $KategoriMotor;
 
 		 	DB::commit();
+
+		 	return $KategoriMotor;
 		 }
 	}
+
 
 
 	public function index(){
