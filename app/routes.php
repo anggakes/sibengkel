@@ -30,7 +30,7 @@ Route::post('/kategoriMotorDelete',['uses'=>'KategoriMotorController@delete']);
 
 Route::post('/kategoriMotorSearch',['uses'=>'KategoriMotorController@search']);
 
-Route::get('/tambah_kategori', function()
+Route::get('/tambah_kategori_motor', function()
 {
 	return View::make('km-add');
 });
@@ -46,3 +46,10 @@ Route::post('/kategoriSCAdd', ['uses'=>'KategoriSCController@create']);
 Route::post('/kategoriSCEdit',['uses'=>'KategoriSCController@update']);
 
 Route::post('/kategoriSCDelete',['uses'=>'KategoriSCController@delete']);
+
+Route::post('/kategoriSCSearch',['uses'=>'KategoriSCController@search']);
+
+Route::get('/tambah_kategori_sc', function()
+{
+	return View::make('ksc-add');
+});

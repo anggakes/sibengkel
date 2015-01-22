@@ -47,6 +47,13 @@ class KategoriSCController extends BaseController {
 		}
 	}
 
+	public function search()
+	{
+		$user = DB::table('Kategori_suku_cadang')->where('id', Input::get('id'))->first();
+
+		return($user->nama);
+	}
+
 	public function update()
 	{
 		 $rules = array(
