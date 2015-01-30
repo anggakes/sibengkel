@@ -51,6 +51,7 @@ App::error(function(Exception $exception, $code)
 	Log::error($exception);
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler
@@ -79,3 +80,4 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+require app_path().'/bind.php';

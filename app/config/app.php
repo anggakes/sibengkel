@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'r6IHq2i5BUGQb2GKMyuDPvGml0ESHPGT',
+	'key' => 'OiTgqQdr5bA45NQQJMxAJsWbHjMOjvFY',
 
 	'cipher' => MCRYPT_RIJNDAEL_128,
 
@@ -124,8 +124,12 @@ return array(
 
 		'Orangehill\Iseed\IseedServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
-	),
+		'Xethron\MigrationsGenerator\MigrationsGeneratorServiceProvider',
+		
+		 // providers array:
+	    'Chumper\Datatable\DatatableServiceProvider',
+
+    	),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -191,6 +195,9 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
+
+		// aliases array:
+	    'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
 
 	),
 

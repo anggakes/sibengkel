@@ -9,7 +9,7 @@
 		"orangehill/iseed": "dev-master",
 		"way/generators": "~2.0",
 		"xethron/migrations-generator": "dev-master",
-		"laravelbook/ardent": "dev-master"
+		"chumper/datatable": "2.*"
 	},
 	"autoload": {
 		"classmap": [
@@ -18,8 +18,13 @@
 			"app/models",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php"
-		]
+			"app/tests/TestCase.php",
+			"app/errors.php"
+		],
+	 	"psr-4": {
+        	"Repositories\\": "app/sibengkel/Repositories",
+        	"Helpers\\": "app/sibengkel/Helpers"
+   		 }
 	},
 	"scripts": {
 		"post-install-cmd": [
