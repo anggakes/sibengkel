@@ -1,5 +1,6 @@
 <?php
 
+
 class KategoriMotor extends Eloquent {
 	public $timestamps = false;
 	protected $fillable = ["nama"];

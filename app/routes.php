@@ -31,8 +31,3 @@ Route::get('/',function(){
 	}
 });
 
-
-
-
-
-
