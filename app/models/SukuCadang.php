@@ -70,13 +70,22 @@ class SukuCadang extends Eloquent {
 */	
 
 	public function datatables(){
-		$data = $this->with('kategoriMotor')->get();
+		$data = $this->with('kategoriSukuCadang','Motor')->get();
+
         return Datatable::collection($data)
         ->showColumns('nama')
-        ->searchColumns('nama','kategori_motor')
-        ->orderColumns('nama','kategori_motor')
-        ->addColumn('kategori_motor',function($model){
-        	return $model->kategori_motor->nama;
+        ->searchColumns('nama','kategori','motor')
+        ->orderColumns('nama','kategori','motor')
+        ->addColumn('kategori',function($model){
+        	return $model->kategori_suku_cadang->nama;
+        })
+        ->addColumn('motor',function($model){
+        	$return='';
+        	foreach($model->motor as $key=>$val){
+        		$return .= $val->nama.", ";
+        	}
+        	$return = substr($return,0,-2);
+        	return $return;
         })
          ->addColumn('name',function($model){
             return "<a href='".route($this->name.'.edit',$model->id)."'>edit</a>

@@ -60,7 +60,8 @@ abstract class CRUDController extends BaseController {
 			if (Request::ajax())
 			{
 				return Response::json([
-						'success' => true
+						'success' => true,
+						'messages'=>'Data berhasil disimpan'
 					],201);			
 			}
 			else
@@ -112,7 +113,8 @@ abstract class CRUDController extends BaseController {
 			if (Request::ajax())
 			{
 				return Response::json([
-						'success' => true
+						'success' => true,
+						'messages'=>'Data berhasil disimpan'
 					],201);
 			}
 			else
