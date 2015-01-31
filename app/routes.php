@@ -5,7 +5,7 @@
 	definisi route untuk simple CRUD 
 	gunakan huruf besar di awal kata dan tanpa spasi
 */
-$crud = ['KategoriMotor','Motor'];
+$crud = ['KategoriMotor','Motor','KategoriSukuCadang','SukuCadang'];
 
 foreach ($crud as $v){
 	Route::get(strtolower($v),
@@ -24,10 +24,4 @@ foreach ($crud as $v){
 		['as'=>$v.'.delete','uses'=>$v."Controller@delete"]);
 };
 
-Route::get('/',function(){
-	$kk = Motor::with('kategoriMotor')->get();
-	foreach (Motor::with('kategoriMotor')->get() as $ka){
-		echo $ka->kategori_motor->nama;
-	}
-});
 

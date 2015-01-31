@@ -1,4 +1,7 @@
 
+{{HTML::script("assets/jquery-2.0.3.min.js")}}
+
+
 @if($type=='create')
 	{{Form::open(["route"=>$name.'.store',"class"=>"form-horizontal","id"=>"ajaxform"])}}  
 @elseif($type=='edit')
@@ -36,6 +39,21 @@ switch ($v['type'])
   				$v['list'], 
   				@$value->$v['name']);
   	break;
+
+  case "multiselect":
+  echo  "<select class='js-example-basic-multiple' multiple='multiple'>";
+  foreach ($v['list'] as $key=>$l){
+    echo "<option value='".$key."'>".$l."</option>";  
+  }
+  echo "</select>";
+  echo HTML::script("assets/select2/select2.js");
+  echo HTML::style("assets/select2/select2.css");
+  echo "
+  <script type='text/javascript'>
+  $('.js-example-basic-multiple').select2();
+  </script>
+  ";
+  break;
 }
   echo "</div></div>";
 
@@ -45,8 +63,6 @@ switch ($v['type'])
 {{Form::submit('simpan')}}
 <!-- end form -->
 {{ Form::close() }}
-
-{{HTML::script("assets/jquery-2.0.3.min.js")}}
 
 
 <!--Ajax form input-->

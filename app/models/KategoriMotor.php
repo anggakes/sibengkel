@@ -10,7 +10,7 @@ class KategoriMotor extends Eloquent {
 	public $name = "KategoriMotor";
 
 	/* coloumn yang ditampilkan pada datatables */
-	public $showColoumn = ["nama","#"];
+	public $showColoumn = ["Nama Kategori","#"];
 
 	/*
 		rules untuk validation form
@@ -30,6 +30,7 @@ class KategoriMotor extends Eloquent {
 		$fields =
 			[
 				[
+				"label"=>"Nama",
 				"name"=>"nama",//gunakan huruf kecil dan underscore
 				"type"=>"text",
 				"placeholder"=>"Nama Kategori Motor"
