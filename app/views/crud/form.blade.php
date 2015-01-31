@@ -41,7 +41,7 @@ switch ($v['type'])
   	break;
 
   case "multiselect":
-  echo  "<select class='js-example-basic-multiple' multiple='multiple'>";
+  echo  "<select name='".$v['name']."[]' class='js-example-basic-multiple' multiple='multiple'>";
   foreach ($v['list'] as $key=>$l){
     echo "<option value='".$key."'>".$l."</option>";  
   }
@@ -102,11 +102,12 @@ $(document).ready(function() {
 
                           alert('Data berhasil disimpan');
                           submit = true;
-                         location.reload();
+                        
                     }
                 },
                 error: function(xhr, textStatus, thrownError) {
                     alert('Something went to wrong.Please Try again later...');
+                    submit = true;
                 }
             });
       }
