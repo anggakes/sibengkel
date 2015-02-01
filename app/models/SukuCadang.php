@@ -45,7 +45,7 @@ class SukuCadang extends Eloquent {
 				"label"=>"Nama",
 				"name"=>"nama",//gunakan huruf kecil dan underscore
 				"type"=>"text",
-				"placeholder"=>"Nama Kategori Motor"
+				"placeholder"=>"Nama Suku Cadang"
 				],
 				[
 				"label"=>"Kategori Suku Cadang",

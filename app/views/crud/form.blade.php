@@ -1,7 +1,19 @@
+@extends('template.template')
 
-{{HTML::script("assets/jquery-2.0.3.min.js")}}
+<!-- awal section content -->
+@section('content')
 
-
+<div class="span8">
+<div class="widget widget-nopad">
+            <div class="widget-header"> <i class="icon-list-alt"></i>
+              <h3> Tambah {{$name}}</h3>
+            </div>
+            <!-- /widget-header -->
+            <div class="widget-content">
+              <div class="widget big-stats-container">
+                <div class="widget-content">
+                  <br>
+                
 @if($type=='create')
 	{{Form::open(["route"=>$name.'.store',"class"=>"form-horizontal","id"=>"ajaxform"])}}  
 @elseif($type=='edit')
@@ -11,10 +23,10 @@
 
 @foreach($fields as $v)
 <?php
-	echo "<div class='form-group'>";
-  echo "<div id='".$v['name']."-error' class='error' style='display: none'></div>";
-	echo Form::label($v['name'],$v['label'],['class'=>'col-sm-3 control-label']);
-    echo "<div class='col-sm-9'>";
+	echo "<div class='control-group' id='".$v['name']."-group'>";
+  	echo Form::label($v['name'],$v['label'],['class'=>' control-label']);
+  
+  echo "<div class='controls' id='".$v['name']."-error'>";
 
 switch ($v['type'])
 {
@@ -22,14 +34,14 @@ switch ($v['type'])
     echo Form::text($v['name'],
     			@$value->$v['name'],
     			[
-    			'class'=>'form-control',
+    			'class'=>'',
     			'id'=>$v['name'],
     			'placeholder'=>$v['placeholder']]);
   	break;
   
   case "textarea":
   	echo Form::textarea($v['name'],@$value->$v['name'],[
-    			'class'=>'form-control',
+    			'class'=>'',
     			'id'=>$v['name'],
     			'placeholder'=>$v['placeholder']]);
   	break;
@@ -37,7 +49,10 @@ switch ($v['type'])
 	case "select":
   	echo Form::select($v['name'], 
   				$v['list'], 
-  				@$value->$v['name']);
+  				@$value->$v['name'],
+          [
+          'class'=>'',
+          'id'=>$v['name']]);
   	break;
 
   case "multiselect":
@@ -50,7 +65,7 @@ switch ($v['type'])
     }
   }
 
-  echo  "<select name='".$v['name']."[]' class='js-example-basic-multiple' multiple='multiple'>";
+  echo  "<select name='".$v['name']."[]' class='js-example-basic-multiple '  multiple='multiple'>";
   foreach ($v['list'] as $key=>$l){
     if(in_array($key, $selected)) {
       echo "<option value='".$key."' selected='true'>".$l."</option>"; 
@@ -69,14 +84,34 @@ switch ($v['type'])
   ";
   break;
 }
-  echo "</div></div>";
+
+echo "</div>";
+
+echo "</div>";
 
 ?>
 @endforeach
 
-{{Form::submit('simpan')}}
+<div class="control-group warning">
+  <label class="control-label" for="inputWarning">Input with warning</label>
+  <div class="controls">
+    <input type="text" id="inputWarning">
+    <span class="help-inline">Something may have gone wrong</span>
+  </div>
+</div>
+<div class='form-actions'>
+{{Form::submit('simpan',["class"=>"btn btn-primary"])}}
+</div>
 <!-- end form -->
 {{ Form::close() }}
+
+<!-- /widget-content --> 
+                
+              </div>
+            </div>
+          </div>
+        </div><!-- end span6 -->
+
 
 
 <!--Ajax form input-->
@@ -106,10 +141,10 @@ $(document).ready(function() {
                         $.each(arr, function(index, value)
                         {
                             if (value.length != 0)
-                            {
-                                $("#"+index+"-error").append('<div class="alert alert-error"><strong>'+ value +'</strong><div>');
+                            {   $("#"+index+"-group").addClass("error");
+                                $("#"+index+"-error").append('<span class="help-inline error" ><strong>'+ value +'</strong></span>');
                             }
-                            $("#"+index+"-error").slideDown();
+                            
                         });
                         submit = true;
                     } else {
@@ -130,3 +165,7 @@ $(document).ready(function() {
 // end of submit --------------------------------------------------------------------------------------------------------------------------
 });
 </script>
+
+@stop
+
+<!-- akhir section content -->
