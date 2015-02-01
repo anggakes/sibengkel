@@ -38,6 +38,15 @@ switch ($v['type'])
     			'id'=>$v['name'],
     			'placeholder'=>$v['placeholder']]);
   	break;
+
+  case "number":
+  echo Form::number($v['name'],
+          @$value->$v['name'],
+          [
+          'class'=>'',
+          'id'=>$v['name'],
+          'placeholder'=>$v['placeholder']]);
+  break
   
   case "textarea":
   	echo Form::textarea($v['name'],@$value->$v['name'],[
