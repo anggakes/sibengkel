@@ -70,7 +70,7 @@ class SukuCadang extends Eloquent {
 */	
 
 	public function datatables(){
-		$data = $this->with('kategoriSukuCadang','Motor')->get();
+		$data = $this->with('kategoriSukuCadang','motor')->get();
 
         return Datatable::collection($data)
         ->showColumns('nama')

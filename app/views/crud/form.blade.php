@@ -41,10 +41,24 @@ switch ($v['type'])
   	break;
 
   case "multiselect":
+
+  $selected=array();
+
+  if(isset($value)){
+    foreach ($value->$v['name'] as $k => $o) {
+      $selected[] = $o->id; 
+    }
+  }
+
   echo  "<select name='".$v['name']."[]' class='js-example-basic-multiple' multiple='multiple'>";
   foreach ($v['list'] as $key=>$l){
-    echo "<option value='".$key."'>".$l."</option>";  
-  }
+    if(in_array($key, $selected)) {
+      echo "<option value='".$key."' selected='true'>".$l."</option>"; 
+    }  
+    else{
+      echo "<option value='".$key."'>".$l."</option>";
+    }
+  } 
   echo "</select>";
   echo HTML::script("assets/select2/select2.js");
   echo HTML::style("assets/select2/select2.css");
