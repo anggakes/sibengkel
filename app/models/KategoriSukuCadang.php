@@ -17,7 +17,7 @@ class KategoriSukuCadang extends Eloquent {
 		menggunakan Validator laravel
 	*/
 	public $rules = [
-		'nama'=>'required'
+		'nama'=>'required|unique:kategori_suku_cadang'
 	];
 
 	/*
@@ -33,7 +33,7 @@ class KategoriSukuCadang extends Eloquent {
 				"label"=>"Nama",
 				"name"=>"nama",//gunakan huruf kecil dan underscore
 				"type"=>"text",
-				"placeholder"=>"Nama Suku Cadang"
+				"placeholder"=>"Nama Kategori Suku Cadang"
 				]
 			];
 

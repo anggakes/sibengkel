@@ -5,7 +5,7 @@
 	definisi route untuk simple CRUD 
 	gunakan huruf besar di awal kata dan tanpa spasi
 */
-$crud = ['KategoriMotor','Motor','KategoriSukuCadang','SukuCadang'];
+$crud = ['KategoriMotor','Motor','KategoriSukuCadang','SukuCadang','Jasa'];
 
 foreach ($crud as $v){
 	Route::get(strtolower($v),

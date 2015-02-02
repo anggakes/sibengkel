@@ -2,7 +2,9 @@
 
 class SukuCadang extends Eloquent {
 	public $timestamps = false;
-	protected $fillable = ["nama","id_kategori_suku_cadang"];
+	protected $fillable = ["nama","id_kategori_suku_cadang", "kode_suku_cadang", 
+							"lead_time", "biaya_pesan", "biaya_simpan", "safety_stock", 
+							"eoq", "rop", "harga", "status"];
 	protected $table = "suku_cadang";
 	protected $guarded = ['id'];
 
@@ -31,6 +33,8 @@ class SukuCadang extends Eloquent {
 	public $rules = [
 		'nama'=>'required',
 		'id_kategori_suku_cadang'=>'required',
+		'kode_suku_cadang'=>'required',
+
 		'motor'=>'required'
 	];
 
@@ -42,10 +46,16 @@ class SukuCadang extends Eloquent {
 		$fields =
 			[
 				[
+				"label"=>"Kode Suku Cadang",
+				"name"=>"kode_suku_cadang",//gunakan huruf kecil dan underscore
+				"type"=>"text",
+				"placeholder"=>"Kode Suku Cadang"
+				],
+				[
 				"label"=>"Nama",
 				"name"=>"nama",//gunakan huruf kecil dan underscore
 				"type"=>"text",
-				"placeholder"=>"Nama Suku Cadang"
+				"placeholder"=>"Nama Kategori Motor"
 				],
 				[
 				"label"=>"Kategori Suku Cadang",
@@ -58,7 +68,62 @@ class SukuCadang extends Eloquent {
 				"name"=>"motor",
 				"type"=>"multiselect",
 				"list"=>Motor::lists('nama','id')
-				]
+				],
+				[
+				"label"=>"Lead Time",
+				"name"=>"lead_time",//gunakan huruf kecil dan underscore
+				"type"=>"number",
+				"step"=>"1",
+				"placeholder"=>"Lama Waktu"
+				],
+				[
+				"label"=>"Biaya Pesan",
+				"name"=>"biaya_pesan",//gunakan huruf kecil dan underscore
+				"type"=>"number",
+				"step"=>"100",
+				"placeholder"=>"Biaya Pesan"
+				],
+				[
+				"label"=>"Biaya Simpan",
+				"name"=>"biaya_simpan",//gunakan huruf kecil dan underscore
+				"type"=>"number",
+				"step"=>"1",
+				"placeholder"=>"Biaya Simpan"
+				],
+				[
+				"label"=>"Safety Stock",
+				"name"=>"safety_stock",//gunakan huruf kecil dan underscore
+				"type"=>"number",
+				"step"=>"1",
+				"placeholder"=>"Stok Pengaman"
+				],
+				[
+				"label"=>"EOQ",
+				"name"=>"eoq",//gunakan huruf kecil dan underscore
+				"type"=>"number",
+				"step"=>"1",
+				"placeholder"=>"Jumlah Order Ekonomis"
+				],
+				[
+				"label"=>"ROP",
+				"name"=>"rop",//gunakan huruf kecil dan underscore
+				"type"=>"number",
+				"step"=>"1",
+				"placeholder"=>"Titik Pemesanan Kembali"
+				],
+				[
+				"label"=>"Harga",
+				"name"=>"harga",//gunakan huruf kecil dan underscore
+				"type"=>"number",
+				"step"=>"500",
+				"placeholder"=>"Harga"
+				],
+				[
+				"label"=>"Status",
+				"name"=>"status",//gunakan huruf kecil dan underscore
+				"type"=>"select",
+				"list"=>["proses_pesan"=>"Proses Pesan", "Siap"=>"Siap"]
+				],
 			];
 
 		return $fields;

@@ -25,7 +25,7 @@ class Motor extends Eloquent {
 |	menggunakan Validator laravel
 */	
 	public $rules = [
-		'nama'=>'required',
+		'nama'=>'required|unique:motor',
 		'id_kategori_motor'=>'required'
 	];
 
@@ -40,7 +40,7 @@ class Motor extends Eloquent {
 				"label"=>"Nama",
 				"name"=>"nama",//gunakan huruf kecil dan underscore
 				"type"=>"text",
-				"placeholder"=>"Nama Kategori Motor"
+				"placeholder"=>"Nama Motor"
 				],
 				[
 				"label"=>"Kategori Motor",

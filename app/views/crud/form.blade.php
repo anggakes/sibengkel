@@ -35,7 +35,8 @@ switch ($v['type'])
     			@$value->$v['name'],
     			[
     			'class'=>'',
-    			'id'=>$v['name'],
+    			'id'=>$v['name'],          
+          'title'=>$v['name'],
     			'placeholder'=>$v['placeholder']]);
   	break;
 
@@ -45,13 +46,17 @@ switch ($v['type'])
           [
           'class'=>'',
           'id'=>$v['name'],
-          'placeholder'=>$v['placeholder']]);
-  break
+          'title'=>$v['name'],
+          'placeholder'=>$v['placeholder'],
+          'step'=>$v['step']
+          ]);
+  break;
   
   case "textarea":
   	echo Form::textarea($v['name'],@$value->$v['name'],[
     			'class'=>'',
     			'id'=>$v['name'],
+          'title'=>$v['name'],
     			'placeholder'=>$v['placeholder']]);
   	break;
 
@@ -61,6 +66,7 @@ switch ($v['type'])
   				@$value->$v['name'],
           [
           'class'=>'',
+          'title'=>$v['name'],
           'id'=>$v['name']]);
   	break;
 
@@ -101,15 +107,10 @@ echo "</div>";
 ?>
 @endforeach
 
-<div class="control-group warning">
-  <label class="control-label" for="inputWarning">Input with warning</label>
-  <div class="controls">
-    <input type="text" id="inputWarning">
-    <span class="help-inline">Something may have gone wrong</span>
-  </div>
-</div>
+
 <div class='form-actions'>
-{{Form::submit('simpan',["class"=>"btn btn-primary"])}}
+{{Form::submit('Simpan',["class"=>"btn btn-primary"])}}
+<button id="batal-btn" class="btn">Kembali</button>
 </div>
 <!-- end form -->
 {{ Form::close() }}
@@ -128,7 +129,7 @@ echo "</div>";
 <script type="text/javascript">
 
 $(document).ready(function() {
-
+  $("#batal-btn").click(function(){window.history.go(-1)});
 // submit function  ---------------------------------------------------------------------------------------            
        var submit =true;
         $('form#ajaxform').submit(function() {
@@ -140,9 +141,12 @@ $(document).ready(function() {
                 cache: false,
                 dataType: 'json',
                 data: $('form#ajaxform').serialize(),
-                beforeSend: function() { 
-                    $(".error").hide().empty(); 
-                },
+                beforeSend: $.proxy(function(data) { 
+                  console.log(data);
+                    $(".help-inline").hide().empty(); 
+                   $( "[class*='error']" ).removeClass("error")
+
+                }),
                 success: function(data) {
                     if(data.success == false)
                     {
@@ -160,7 +164,11 @@ $(document).ready(function() {
 
                           alert('Data berhasil disimpan');
                           submit = true;
-                        
+                          var str = $(location).attr('href');
+                          var i = str.lastIndexOf('/');
+                              str = str.substr(0, i);
+
+                          window.location=str;
                     }
                 },
                 error: function(xhr, textStatus, thrownError) {
