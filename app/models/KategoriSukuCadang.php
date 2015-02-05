@@ -46,7 +46,7 @@ class KategoriSukuCadang extends Eloquent {
         ->searchColumns('nama')
         ->orderColumns('nama')
          ->addColumn('name',function($model){
-            return "<a href='".route($this->name.'.edit',$model->id)."'>edit</a>
+            return "<a id='showModal'  data-toggle='modal' data-target='#modal'  href='".route($this->name.'.edit',$model->id)."'>edit</a>
             		<a href='".route($this->name.'.delete',$model->id)."' onClick=\"return confirm('yakin menghapus ?')\">hapus</a>
             		";
         })

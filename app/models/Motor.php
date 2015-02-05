@@ -40,7 +40,7 @@ class Motor extends Eloquent {
 				"label"=>"Nama",
 				"name"=>"nama",//gunakan huruf kecil dan underscore
 				"type"=>"text",
-				"placeholder"=>"Nama Kategori Motor"
+				"placeholder"=>"Nama Motor"
 				],
 				[
 				"label"=>"Kategori Motor",
@@ -68,7 +68,7 @@ class Motor extends Eloquent {
         	return $model->kategori_motor->nama;
         })
          ->addColumn('name',function($model){
-            return "<a href='".route($this->name.'.edit',$model->id)."'>edit</a>
+            return "<a id='showModal'  data-toggle='modal' data-target='#modal'  href='".route($this->name.'.edit',$model->id)."'>edit</a>
             		<a href='".route($this->name.'.delete',$model->id)."' onClick=\"return confirm('yakin menghapus ?')\">hapus</a>
             		";
         })

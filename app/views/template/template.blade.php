@@ -15,6 +15,10 @@
 
 {{HTML::script("assets/jquery-2.0.3.min.js")}}
 
+{{HTML::script("assets/template/js/bootstrap.js")}}
+{{HTML::script("assets/template/js/base.js")}}
+
+
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -90,7 +94,7 @@
 @yield('content')
 
 
-      </row>
+      </div>
       <!-- /row --> 
     </div>
     <!-- /container --> 
@@ -171,8 +175,6 @@
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
 
-{{HTML::script("assets/template/js/bootstrap.js")}}
-{{HTML::script("assets/template/js/base.js")}}
  
 </body>
 </html>

@@ -1,18 +1,5 @@
-@extends('template.template')
 
-<!-- awal section content -->
-@section('content')
 
-<div class="span8">
-<div class="widget widget-nopad">
-            <div class="widget-header"> <i class="icon-list-alt"></i>
-              <h3> Tambah {{$name}}</h3>
-            </div>
-            <!-- /widget-header -->
-            <div class="widget-content">
-              <div class="widget big-stats-container">
-                <div class="widget-content">
-                  <br>
                 
 @if($type=='create')
 	{{Form::open(["route"=>$name.'.store',"class"=>"form-horizontal","id"=>"ajaxform"])}}  
@@ -23,10 +10,10 @@
 
 @foreach($fields as $v)
 <?php
-	echo "<div class='control-group' id='".$v['name']."-group'>";
+	echo "<div class='control-group group' id='".$v['name']."-group'>";
   	echo Form::label($v['name'],$v['label'],['class'=>' control-label']);
   
-  echo "<div class='controls' id='".$v['name']."-error'>";
+  echo "<div class='controls'>";
 
 switch ($v['type'])
 {
@@ -46,7 +33,7 @@ switch ($v['type'])
           'class'=>'',
           'id'=>$v['name'],
           'placeholder'=>$v['placeholder']]);
-  break
+  break;
   
   case "textarea":
   	echo Form::textarea($v['name'],@$value->$v['name'],[
@@ -93,37 +80,28 @@ switch ($v['type'])
   ";
   break;
 }
+echo "<span class='help-inline error error-text' id='".$v["name"]."-error'></span>";
 
-echo "</div>";
+echo "</div>";//controls
 
-echo "</div>";
+
+echo "</div>";//form group
 
 ?>
 @endforeach
 
-<div class="control-group warning">
-  <label class="control-label" for="inputWarning">Input with warning</label>
-  <div class="controls">
-    <input type="text" id="inputWarning">
-    <span class="help-inline">Something may have gone wrong</span>
-  </div>
-</div>
+
 <div class='form-actions'>
 {{Form::submit('simpan',["class"=>"btn btn-primary"])}}
 </div>
 <!-- end form -->
 {{ Form::close() }}
 
-<!-- /widget-content --> 
-                
-              </div>
-            </div>
-          </div>
-        </div><!-- end span6 -->
 
 
 
 <!--Ajax form input-->
+
 
 <script type="text/javascript">
 
@@ -134,6 +112,8 @@ $(document).ready(function() {
         $('form#ajaxform').submit(function() {
           if(submit){
             submit = false;
+            
+
             $.ajax({
                 url : $( 'form#ajaxform' ).prop( 'action' ),
                 type: 'post',
@@ -141,7 +121,8 @@ $(document).ready(function() {
                 dataType: 'json',
                 data: $('form#ajaxform').serialize(),
                 beforeSend: function() { 
-                    $(".error").hide().empty(); 
+                    $(".group").removeClass("error");
+                   $(".error-text").html('');
                 },
                 success: function(data) {
                     if(data.success == false)
@@ -151,7 +132,7 @@ $(document).ready(function() {
                         {
                             if (value.length != 0)
                             {   $("#"+index+"-group").addClass("error");
-                                $("#"+index+"-error").append('<span class="help-inline error" ><strong>'+ value +'</strong></span>');
+                                $("#"+index+"-error").html('<strong>'+ value +'</strong>');
                             }
                             
                         });
@@ -160,6 +141,7 @@ $(document).ready(function() {
 
                           alert('Data berhasil disimpan');
                           submit = true;
+                          location.reload();
                         
                     }
                 },
@@ -174,7 +156,3 @@ $(document).ready(function() {
 // end of submit --------------------------------------------------------------------------------------------------------------------------
 });
 </script>
-
-@stop
-
-<!-- akhir section content -->
