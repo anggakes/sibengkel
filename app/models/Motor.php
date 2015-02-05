@@ -25,7 +25,7 @@ class Motor extends Eloquent {
 |	menggunakan Validator laravel
 */	
 	public $rules = [
-		'nama'=>'required',
+		'nama'=>'required|unique:motor',
 		'id_kategori_motor'=>'required'
 	];
 

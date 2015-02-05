@@ -22,7 +22,8 @@ switch ($v['type'])
     			@$value->$v['name'],
     			[
     			'class'=>'',
-    			'id'=>$v['name'],
+    			'id'=>$v['name'],          
+          'title'=>$v['name'],
     			'placeholder'=>$v['placeholder']]);
   	break;
 
@@ -32,13 +33,17 @@ switch ($v['type'])
           [
           'class'=>'',
           'id'=>$v['name'],
-          'placeholder'=>$v['placeholder']]);
+          'title'=>$v['name'],
+          'placeholder'=>$v['placeholder'],
+          'step'=>$v['step']
+          ]);
   break;
   
   case "textarea":
   	echo Form::textarea($v['name'],@$value->$v['name'],[
     			'class'=>'',
     			'id'=>$v['name'],
+          'title'=>$v['name'],
     			'placeholder'=>$v['placeholder']]);
   	break;
 
@@ -48,6 +53,7 @@ switch ($v['type'])
   				@$value->$v['name'],
           [
           'class'=>'',
+          'title'=>$v['name'],
           'id'=>$v['name']]);
   	break;
 
@@ -92,7 +98,8 @@ echo "</div>";//form group
 
 
 <div class='form-actions'>
-{{Form::submit('simpan',["class"=>"btn btn-primary"])}}
+{{Form::submit('Simpan',["class"=>"btn btn-primary"])}}
+<button id="batal-btn" class="btn">Kembali</button>
 </div>
 <!-- end form -->
 {{ Form::close() }}
@@ -106,7 +113,7 @@ echo "</div>";//form group
 <script type="text/javascript">
 
 $(document).ready(function() {
-
+  $("#batal-btn").click(function(){window.history.go(-1)});
 // submit function  ---------------------------------------------------------------------------------------            
        var submit =true;
         $('form#ajaxform').submit(function() {
@@ -120,6 +127,7 @@ $(document).ready(function() {
                 cache: false,
                 dataType: 'json',
                 data: $('form#ajaxform').serialize(),
+
                 beforeSend: function() { 
                     $(".group").removeClass("error");
                    $(".error-text").html('');
@@ -141,8 +149,9 @@ $(document).ready(function() {
 
                           alert('Data berhasil disimpan');
                           submit = true;
-                          location.reload();
-                        
+                          var str = "{{URL::route($name)}}";
+
+                          window.location=str;
                     }
                 },
                 error: function(xhr, textStatus, thrownError) {

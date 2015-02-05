@@ -39,19 +39,19 @@ table.dataTable thead .sorting {
   *cursor: hand;
 }
 table.dataTable thead .sorting {
-  background: url("../images/sort_both.png") no-repeat center right;
+  background: url("../images/sort_both.png") no-repeat 2px 10px;
 }
 table.dataTable thead .sorting_asc {
-  background: url("../images/sort_asc.png") no-repeat center right;
+  background: url("../images/sort_asc.png") no-repeat 2px 10px;
 }
 table.dataTable thead .sorting_desc {
-  background: url("../images/sort_desc.png") no-repeat center right;
+  background: url("../images/sort_desc.png") no-repeat 2px 10px;
 }
 table.dataTable thead .sorting_asc_disabled {
-  background: url("../images/sort_asc_disabled.png") no-repeat center right;
+  background: url("../images/sort_asc_disabled.png") no-repeat 2px 10px;
 }
 table.dataTable thead .sorting_desc_disabled {
-  background: url("../images/sort_desc_disabled.png") no-repeat center right;
+  background: url("../images/sort_desc_disabled.png") no-repeat 2px 10px;
 }
 table.dataTable tbody tr {
   background-color: white;
@@ -94,7 +94,7 @@ table.dataTable.hover tbody tr.odd:hover,
 table.dataTable.hover tbody tr.even:hover, table.dataTable.display tbody tr:hover,
 table.dataTable.display tbody tr.odd:hover,
 table.dataTable.display tbody tr.even:hover {
-  background-color: whitesmoke;
+ /* background-color: whitesmoke;*/
 }
 table.dataTable.hover tbody tr:hover.selected,
 table.dataTable.hover tbody tr.odd:hover.selected,

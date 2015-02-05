@@ -17,7 +17,7 @@ class KategoriMotor extends Eloquent {
 		menggunakan Validator laravel
 	*/
 	public $rules = [
-		'nama'=>'required'
+		'nama'=>'required|unique:kategori_motor'
 	];
 
 	/*
