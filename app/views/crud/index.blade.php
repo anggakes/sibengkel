@@ -55,9 +55,11 @@
 
 
 {{HTML::script("assets/template/js/bootstrap-modal.js")}}
+
 <script type="text/javascript">
+
 $(document).ready(function(){
-alert('aa');
+
 	$(document).on('hidden', '#modalDialog', function () {
       $('.modal-body').html("      loading..");
       $(this).removeData('modal');
