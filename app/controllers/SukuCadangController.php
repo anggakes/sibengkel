@@ -108,5 +108,10 @@ class SukuCadangController extends CRUDController {
 		}	
 	}
 	
+	public function detail($id){
+		$data=SukuCadang::find($id);
 
+		return View::make('sukucadang.detail')->with('sukucadang',$data);
+
+	}
 }

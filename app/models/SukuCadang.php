@@ -24,7 +24,7 @@ class SukuCadang extends Eloquent {
 
 
 /* coloumn yang ditampilkan pada datatables */
-	public $showColoumn = ["Nama Motor","Kategori","Motor","#"];
+	public $showColoumn = ["Kode Suku Cadang","Nama Suku Cadang","Kategori","Motor","#"];
 
 /*
 |	rules untuk validation form
@@ -138,12 +138,21 @@ class SukuCadang extends Eloquent {
 		$data = $this->with('kategoriSukuCadang','motor')->get();
 
         return Datatable::collection($data)
-        ->showColumns('nama')
+        
         ->searchColumns('nama','kategori','motor')
         ->orderColumns('nama','kategori','motor')
+        ->addColumn('kode_suku_cadang',function($model){
+
+        	return "<a href='".route($this->name.'.detail',$model->id)."'>".$model->kode_suku_cadang."</a>";
+        })
+        ->addColumn('nama',function($model){
+
+        	return "<a href='".route($this->name.'.detail',$model->id)."'>".$model->nama."</a>";
+        })
         ->addColumn('kategori',function($model){
         	return $model->kategori_suku_cadang->nama;
         })
+         
         ->addColumn('motor',function($model){
         	$return='';
         	foreach($model->motor as $key=>$val){

@@ -24,6 +24,9 @@ foreach ($crud as $v){
 		['as'=>$v.'.delete','uses'=>$v."Controller@delete"]);
 };
 
+Route::get('sukucadang/{id}/detail',
+		['as'=>'SukuCadang.detail','uses'=>"SukuCadangController@detail"]);
+
 
 /* Route Pemesanan */
 
