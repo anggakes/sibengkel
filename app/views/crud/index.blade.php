@@ -6,7 +6,7 @@
 
 <!-- Modal -->
 
-<div class="modal fade tambah" id='modalDialog'>
+<div class="modal fade tambah" id='modal'>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -14,7 +14,7 @@
         <h4 class="modal-title">Tambah </h4>
       </div><br>
       <div class="modal-body">
-        <p>One fine body&hellip;</p>
+        <p>loading ...</p>
       </div>
     <br>
     </div>
@@ -33,7 +33,7 @@
                 <div class="widget-content">
                   <br>
                   <div class="span11">
-<a data-toggle="modal" class="open-obatDialog"  href="{{URL::route($name.'.create')}}" data-target='#modalDialog'><i class="icon-edit" style="font-size:13pt"></i></a>
+<a data-toggle="modal" class="open-obatDialog"  href="{{URL::route($name.'.create')}}" data-target='#modal'><i class="icon-edit" style="font-size:13pt"></i></a>
 					
 					{{HTML::style("assets/datatables/jquery.dataTables.css")}}
 
@@ -60,7 +60,7 @@
 
 $(document).ready(function(){
 
-	$(document).on('hidden', '#modalDialog', function () {
+	$(document).on('hidden', '#modal', function () {
       $('.modal-body').html("      loading..");
       $(this).removeData('modal');
     });

@@ -63,6 +63,7 @@
 
 </div> <!-- end row -->
 <hr>
+<form>
 <div class='control-group group pull-right' id='kode_transaksi-group'>
 {{Form::label("kode_transaksi","Kode SukuCadang",['class'=>' control-label'])}}
 <div class='controls'>
@@ -86,6 +87,7 @@
 <td>subtotal</td>
 </tr>
 </table>
+</form>
 <div class='clearfix'></div>
 <hr>
 <div class='form-actions'>
