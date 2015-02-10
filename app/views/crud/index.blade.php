@@ -10,13 +10,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Tambah </h4>
+        <button type="button" class="close btn-danger" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Tambah {{$name}}</h4>
+        <br>
       </div><br>
       <div class="modal-body">
         <p>loading ...</p>
       </div>
     <br>
+    <div class="modal-footer">
+    </div>
     </div>
   </div>
 </div>
@@ -33,8 +36,8 @@
                 <div class="widget-content">
                   <br>
                   <div class="span11">
-<a data-toggle="modal" class="open-obatDialog"  href="{{URL::route($name.'.create')}}" data-target='#modal'><i class="icon-edit" style="font-size:13pt"></i></a>
-					
+<a data-toggle="modal" class="open-obatDialog pull-right btn btn-primary"  href="{{URL::route($name.'.create')}}" data-target='#modal'><i class="icon-plus" style="font-size:13pt"></i> Tambah</a>
+<div class='clearfix'></div> <br>					
 					{{HTML::style("assets/datatables/jquery.dataTables.css")}}
 
 					{{HTML::script("assets/jquery-2.0.3.min.js")}}

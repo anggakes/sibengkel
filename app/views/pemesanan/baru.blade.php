@@ -63,31 +63,6 @@
 
 </div> <!-- end row -->
 <hr>
-<form>
-<div class='control-group group pull-right' id='kode_transaksi-group'>
-{{Form::label("kode_transaksi","Kode SukuCadang",['class'=>' control-label'])}}
-<div class='controls'>
-{{Form::text("kode_transaksi","",
-          [
-          'class'=>'span4 barcode',
-          'id'=>"kode_sc",          
-            'title'=>"kode_transaksi",
-          'placeholder'=>"Kode SukuCadang"])}}   
-<a href ='#'class='btn btn-primary'>cari</a>
-</div>
-</div> <!-- end control group-->
-
-<table class='table'>
-<tr>
-<td>Kode</td>
-<td>Nama</td>
-<td>Harga</td>
-<td>Banyak</td>
-<td>Diskon</td>
-<td>subtotal</td>
-</tr>
-</table>
-</form>
 <div class='clearfix'></div>
 <hr>
 <div class='form-actions'>
@@ -131,7 +106,7 @@ $('.barcode').on('keyup',function(e){
                 data: $('form#ajaxform').serialize(),
 
                 beforeSend: function() { 
-                    $(".group").removeClass("error");
+                   $(".group").removeClass("error");
                    $(".error-text").html('');
                 },
                 success: function(data) {

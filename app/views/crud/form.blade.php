@@ -99,7 +99,7 @@ echo "</div>";//form group
 
 <div class='form-actions'>
 {{Form::submit('Simpan',["class"=>"btn btn-primary"])}}
-<button id="batal-btn" class="btn">Kembali</button>
+<button class="btn" data-dismiss="modal">Batal</button>
 </div>
 <!-- end form -->
 {{ Form::close() }}
