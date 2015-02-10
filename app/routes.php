@@ -25,3 +25,8 @@ foreach ($crud as $v){
 };
 
 
+/* Route Pemesanan */
+
+Route::get('pemesanan',['as'=>'pemesanan','uses'=>"PemesananController@add"]);
+Route::post('pemesanan',['as'=>'pemesanan.create','uses'=>"PemesananController@create"]);
+Route::get('pemesanan/item/{kode_sc}',['as'=>'pemesanan.item','uses'=>"PemesananController@item"]);
