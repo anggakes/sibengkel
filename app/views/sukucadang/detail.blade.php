@@ -13,13 +13,13 @@
             <div class="widget-content">
               <div class="widget big-stats-container">
                 <div class="widget-content">
-                  <div class="span5">
-                    <table class="table">
+                  <div class="span6">
+                    <table class="table alert-info">
                       @foreach($sukucadang->fields() as $v)
                       <tr>
-                        <td> {{$v['label']}} </td>
-                        <td> : {{$sukucadang->$v['name']}} </td>
-                        @if()
+                        <td class="span3"> {{$v['label']}} </td>
+                        <td class="span2"> : {{$sukucadang->$v['name']}} </td>
+                        
                       </tr>
                       @endforeach
                     </table>
