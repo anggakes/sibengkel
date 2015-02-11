@@ -3,7 +3,7 @@
 
 <!-- awal section content -->
 @section('content')
-
+{{HTML::script("assets/jquery.autocomplete.js")}}
 	<div class="span12">
 		<div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
@@ -81,7 +81,7 @@
                                   <input type="text" name="kode[]" class="span3" id="kode_0" placeholder="Kode" style="text-align: left;" readonly required/>
                                 </td>
                                 <td width='260'>
-                                  <input type="text" name="jasa[]" class="span3" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onclick="add_row(this)" required/>
+                                  <input type="text" name="jasa[]" class="span3 autocomplete" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onclick="add_row(this)" onkeydown="autoc(this)" required/>
                                 </td>
                                 <td width='60'>
                                   <input type="number" name="qty[]" class="span1" idx="100" max="10" id="qty_0" title="0" min="1" step="1" placeholder="Quantity" style="text-align: right;" value="1" required/>
@@ -121,11 +121,22 @@
 
 @section('js')
 <script type="text/javascript">
-
-$('.barcode').on('keyup',function(e){
-  e.preventDefault();
-  alert('a');
+    var countries = [   { value: 'Andorra', kode: 'a0832 ds8', harga: '10000' },
+                     // ...
+   { value: 'zorra', kode: 'po32 ds8', harga: '18900' },
+   { value: 'yondorra', kode: 'i3q832 ds8', harga: '90000' }
+];
+function autoc(data){
+$(data).autocomplete({
+    lookup: countries,
+    onSelect: function (suggestion) {
+        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        ajsdljahskldjakldjalj
+    }
 });
+}
+
+// -------------------------------------------------------------------------
 
   $('form#ajaxform').submit(function() {
 
@@ -194,7 +205,7 @@ $('.barcode').on('keyup',function(e){
         }
     }
   /*var i = 1;
-  $("#detailpakai:last").on("focus", "input:", function(e) {
+  $("#detailpakai:last").on("focus", "input:last", function(e) {
     $("table tr:last").clone().find("input").each(function() {
           $(this).val('').attr('id', function(_, id) { return id + i });
       }).end().appendTo("table");
