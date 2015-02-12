@@ -123,24 +123,15 @@
 @section('js')
 <script type="text/javascript">
 
-    var countries = [   { value: 'Andorra', kode: 'a0832 ds8', harga: '10000' },
-                       { value: 'yondorra', kode: 'i3q832 ds8', harga: '90000' }
+    var countries = [  
+    
+    {{ $acSukucadang }}
+    
                     ];
+    
+
     var infield = ['#kode_', '#jasa_', '#harga_'];
 
-function autoc(data){
-$(data).autocomplete({
-    lookup: countries,
-    onSelect: function (suggestion) {
-        var numid=data.id;            
-            numid=numid.split('_');
-            var arga=suggestion.harga;
-            $(infield[0]+numid[1]).val(suggestion.kode);
-            $(infield[1]+numid[1]).val(suggestion.value);
-            $(infield[2]+numid[1]).val(suggestion.harga);
-        }
-});
-}
 
 // -------------------------------------------------------------------------
 
@@ -197,6 +188,19 @@ $(data).autocomplete({
                   }
               });
               }).end().appendTo("table");i++;
+
+            $(data).autocomplete({
+                lookup: countries,
+                onSelect: function (suggestion) {
+                    var numid=data.id;            
+                        numid=numid.split('_');
+                        var arga=suggestion.harga;
+                        $(infield[0]+numid[1]).val(suggestion.kode);
+                        $(infield[1]+numid[1]).val(suggestion.value);
+                        $(infield[2]+numid[1]).val(suggestion.harga);
+                    }
+            });
+
            }
     }
 
