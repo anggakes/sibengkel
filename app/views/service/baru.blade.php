@@ -3,8 +3,7 @@
 
 <!-- awal section content -->
 @section('content')
-{{HTML::script("assets/jquery.autocomplete.js")}}
-{{HTML::style("assets/CSS/styles.css")}}
+
 	<div class="span12">
 		<div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
@@ -25,28 +24,37 @@
                         </div>
                          <div class='pull-right' style='margin-left:-10px;margin-top:10px'>
                             <div class='control-group group' id='kode_transaksi-group'>
-                              {{Form::label("tanggal","Tanggal",['class'=>' control-label'])}}
+                              {{Form::label("kode_transaksi","Tanggal",['class'=>' control-label'])}}
                                 <div class='controls right'>
                                   {{Form::text("kode_transaksi",date('d M Y'),
                                     [
                                     'class'=>'',
-                                    'id'=>"tanggal",          
-                                      'title'=>"tanggal",
+                                    'id'=>"kode_transaksi",          
+                                      'title'=>"kode_transaksi",
                                     'placeholder'=>"Tanggal"]);
                                   }}   
                                 </div>
-
                             </div> <!-- end control group-->
                             <div class='control-group group' id='kode_transaksi-group'>
-
-                            {{Form::label("no_faktur","Nomor Faktur",['class'=>' control-label'])}}
+                            {{Form::label("kode_transaksi","Kode Transaksi",['class'=>' control-label'])}}
                               <div class='controls'>
-                                {{Form::text("no_faktur",$nofaktur,
+                                {{Form::text("kode_transaksi","",
                                   [
                                   'class'=>'',
-                                  'id'=>"no_faktur",          
-                                  'title'=>"no_faktur",
-                                  'placeholder'=>"Nomor Faktur Transaksi"])}}   
+                                  'id'=>"kode_transaksi",          
+                                    'title'=>"kode_transaksi",
+                                  'placeholder'=>"Kode Transaksi"])}}   
+                              </div>
+                          </div>
+                          <div class='control-group group' id='kode_transaksi-group'>
+                            {{Form::label("kode_transaksi","Kode Transaksi",['class'=>' control-label'])}}
+                              <div class='controls'>
+                                {{Form::text("kode_transaksi","",
+                                  [
+                                  'class'=>'',
+                                  'id'=>"kode_transaksi",          
+                                    'title'=>"kode_transaksi",
+                                  'placeholder'=>"Kode Transaksi"])}}   
                               </div>
                           </div>
                          </div><!-- end span -->
@@ -55,61 +63,52 @@
                     <div class='row'>
                         <table id='tabel' class=''>
                             <thead class='alert'style='border:1px #ddd solid'>
-                              <th width="100" rowspan="2">Aksi</th>
-                              <th width="160" rowspan="2">Kode</th>
-                              <th width='180'> Biaya Jasa Bengkel</th>
-                              <th width="40" rowspan="2">@ Qty</th>
+                              <th width="80" rowspan="2">Aksi</th>
+                              <th width="260" rowspan="2">Kode</th>
+                              <th width='260'> Biaya Jasa Bengkel</th>
+                              <th width="60" rowspan="2">@ Qty</th>
                               <th width="150" rowspan="2">@ Harga</th>
-                              <th width="40" rowspan="2">% Discount</th>
+                              <th width="50" rowspan="2">@ Discount</th>
                               <th width='390' rowspan="2">Jumlah</th>
-                              <th width='390' rowspan="2">Keterangan</th>
-                              <tr><th width='180' style="border-top:1px solid silver"> Nota Suku Cadang</th></tr>
+                              <tr><th width='260' style="border-top:1px solid silver"> Nota Suku Cadang</th></tr>
                             </thead>
                             <tbody>
                               <tr id="detailpakai">
                                 <td width="80">
                                   <button type="button" value="Delete" onclick="deleteRow(this)" class='btn btn-danger btn-mini'><i class='btn-icon-only icon-minus-sign'></i></button>
                                 </td>
-                                <td width='160'>
-                                  <input type="text" name="kode[]" class="span2" id="kode_0" placeholder="Kode" style="text-align: left;" readonly required/>
-                                  <input type="hidden" name="idsc[]" class="span2" id="idsc_0" placeholder="Kode" style="text-align: left;" required/>
+                                <td width='260'>
+                                  <input type="text" name="kode[]" class="span3" id="kode_0" placeholder="Kode" style="text-align: left;" readonly required/>
                                 </td>
-                                <td width='180'>
-                                  <input type="text" name="jasa[]" class="span2 autocomplete" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onclick="add_row(this)" onkeydown="autoc(this)" required/>
-                                  
+                                <td width='260'>
+                                  <input type="text" name="jasa[]" class="span3" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onclick="add_row(this)" required/>
                                 </td>
-                                <td width='40'>
-                                  <input type="number" name="qty[]" class="span1" idx="100" max="200" id="qty_0" title="0" min="1" step="1" placeholder="Quantity" style="text-align: right;width:40px;" value="1" required/>
+                                <td width='60'>
+                                  <input type="number" name="qty[]" class="span1" idx="100" max="10" id="qty_0" title="0" min="1" step="1" placeholder="Quantity" style="text-align: right;" value="1" required/>
                                 </td>
                                 <td width='150'>
                                   <input type="number" name="harga[]" class="span2" id="harga_0" akuma="90" min="100" step="500" placeholder="Harga" style="text-align: right;" readonly required/>
                                 </td>
-                                <td width='40'>
-                                  <input type="number" name="disc[]" class="" id="disc_0" value="0" min="0" max="100" step="1" placeholder="Discount" style="text-align: right;width:50px;" required/>
+                                <td width='50'>
+                                  <input type="number" name="disc[]" class="span1" id="disc_0" value="0" min="0" max="100" step="1" placeholder="Discount" style="text-align: right;"/>
                                 </td>
                                 <td width='390' style="text-align:right;">
-                                  <input type="number" value="0" name="jumlah[]" class="span2 jumlah" id="jumlah_0" min="0" step="100" placeholder="Jumlah" style="text-align: right;" readonly required/>
-                                </td>
-                                 <td width='390' style="text-align:right;">
-                                  <input type="text" name="keterangan[]" class="span3" id="keterangan_0" placeholder="Keterangan"/>
-                                  <input type="hidden" name="refid[]" class="span3" id="refid_0" placeholder="Keterangan"/>
+                                  Rp <input type="number" value="0" name="jumlah[]" class="span2 jumlah" id="jumlah_0" min="0" step="100" placeholder="Jumlah" style="text-align: right;" readonly required/>
                                 </td>
                               </tr>
                         </table><!-- end span -->
-                        <hr>
+
                     </div> <!-- end row -->
-                    
+                    <hr>
                     <div class='clearfix'></div>
-                    
-                    <div class='row'>
-                      <hr>
+                    <hr>
                       <div class='form-actions'>
                         {{Form::submit('Simpan',["class"=>"btn btn-primary"])}}
                         <button id="batal-btn" class="btn">Kembali</button>
                       </div>
                     {{Form::close()}}
 
-				          
+				          </div>
       				</div>
 			     </div>
 			   </div>
@@ -123,26 +122,10 @@
 @section('js')
 <script type="text/javascript">
 
-    var countries = [   { value: 'Andorra', kode: 'a0832 ds8', harga: '10000' },
-                       { value: 'yondorra', kode: 'i3q832 ds8', harga: '90000' }
-                    ];
-    var infield = ['#kode_', '#jasa_', '#harga_'];
-
-function autoc(data){
-$(data).autocomplete({
-    lookup: countries,
-    onSelect: function (suggestion) {
-        var numid=data.id;            
-            numid=numid.split('_');
-            var arga=suggestion.harga;
-            $(infield[0]+numid[1]).val(suggestion.kode);
-            $(infield[1]+numid[1]).val(suggestion.value);
-            $(infield[2]+numid[1]).val(suggestion.harga);
-        }
+$('.barcode').on('keyup',function(e){
+  e.preventDefault();
+  alert('a');
 });
-}
-
-// -------------------------------------------------------------------------
 
   $('form#ajaxform').submit(function() {
 
@@ -173,7 +156,6 @@ $(data).autocomplete({
             return false;
     });
 
-
     function add_row(data)
     {
           var numid=data.id;            
@@ -189,7 +171,7 @@ $(data).autocomplete({
            if(num == numid[1]){
               $("table tr:last").clone().find("input").each(function() {
               $(this).attr({
-                  'id': function(_, id) { return this.id.split('_')[0]+'_'+(num + i )},
+                  'id': function(_, id) { return numid[0]+'_'+(num + i )},
                   'value': function(_,value)  {
                         if(numid[0]=='qty'){ return 1;  }
                         else if(numid[0]=='jumlah'){ return 0;  }
@@ -212,7 +194,7 @@ $(data).autocomplete({
         }
     }
   /*var i = 1;
-  $("#detailpakai:last").on("focus", "input:last", function(e) {
+  $("#detailpakai:last").on("focus", "input:", function(e) {
     $("table tr:last").clone().find("input").each(function() {
           $(this).val('').attr('id', function(_, id) { return id + i });
       }).end().appendTo("table");
