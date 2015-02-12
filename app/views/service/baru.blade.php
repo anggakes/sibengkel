@@ -36,18 +36,27 @@
                                 </div>
                             </div> <!-- end control group-->
                             <div class='control-group group' id='kode_transaksi-group'>
-                           
-                            {{Form::label("no_faktur","Nomor Faktur",['class'=>' control-label'])}}
+                            {{Form::label("kode_transaksi","Kode Transaksi",['class'=>' control-label'])}}
                               <div class='controls'>
-                                {{Form::text("no_faktur",$nofaktur,
+                                {{Form::text("kode_transaksi","",
                                   [
                                   'class'=>'',
-                                  'id'=>"no_faktur",          
-                                  'title'=>"no_faktur",
-                                  'placeholder'=>"Nomor Faktur Transaksi"])}}   
+                                  'id'=>"kode_transaksi",          
+                                    'title'=>"kode_transaksi",
+                                  'placeholder'=>"Kode Transaksi"])}}   
                               </div>
                           </div>
-                         
+                          <div class='control-group group' id='kode_transaksi-group'>
+                            {{Form::label("kode_transaksi","Kode Transaksi",['class'=>' control-label'])}}
+                              <div class='controls'>
+                                {{Form::text("kode_transaksi","",
+                                  [
+                                  'class'=>'',
+                                  'id'=>"kode_transaksi",          
+                                    'title'=>"kode_transaksi",
+                                  'placeholder'=>"Kode Transaksi"])}}   
+                              </div>
+                          </div>
                          </div><!-- end span -->
                     </div><!-- end row -->
 
@@ -113,7 +122,39 @@
 @section('js')
 <script type="text/javascript">
 
-         
+$('.barcode').on('keyup',function(e){
+  e.preventDefault();
+  alert('a');
+});
+
+  $('form#ajaxform').submit(function() {
+
+          if(submit){
+            submit = false;
+            
+
+            $.ajax({
+                url : $( 'form#ajaxform' ).prop( 'action' ),
+                type: 'post',
+                cache: false,
+                dataType: 'json',
+                data: $('form#ajaxform').serialize(),
+
+                beforeSend: function() { 
+                   $(".group").removeClass("error");
+                   $(".error-text").html('');
+                },
+                success: function(data) {
+                    
+                },
+                error: function(xhr, textStatus, thrownError) {
+                    alert('Something went to wrong.Please Try again later...');
+                    submit = true;
+                }
+            });
+      }
+            return false;
+    });
 
     function add_row(data)
     {
