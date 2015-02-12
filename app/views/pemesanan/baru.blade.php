@@ -75,7 +75,7 @@
                                   <input type="hidden" name="idsc[]" class="span2" id="idsc_0" placeholder="Kode" style="text-align: left;" required/>
                                 </td>
                                 <td width='180'>
-                                  <input type="text" name="jasa[]" class="span2 autocomplete" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onclick="add_row(this)" onchange="Hitung(this)" required/>                                 
+                                  <input type="text" name="jasa[]" class="span2 autocomplete" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onfocus="add_row(this)" onchange="Hitung(this)" required/>                                 
                                 </td>
                                 <td width='40'>
                                   <input type="number" name="qty[]" class="span1" idx="100" max="200" id="qty_0" title="0" min="1" step="1" placeholder="Quantity" style="text-align: right;width:40px;" value="1" onchange="Hitung(this)" required/>
@@ -189,7 +189,7 @@
               }).end().appendTo("table");i++;
 
 
-            $(data).autocomplete({
+            $(".autocomplete").autocomplete({
                 lookup: countries,
                 onSelect: function (suggestion) {
                     var numid=data.id;            
