@@ -14,7 +14,7 @@
             <div class="widget-content">
               <div class="widget big-stats-container">
                 <div class="widget-content span12">
-                  <br>
+                  <br> 
                   <div class="span11">
                     {{Form::open(["route"=>"pemesanan.create","class"=>"form-horizontal","id"=>"ajaxform"])}}  
                       <div class='row'>
@@ -27,7 +27,7 @@
                             <div class='control-group group' id='kode_transaksi-group'>
                               {{Form::label("tanggal","Tanggal",['class'=>' control-label'])}}
                                 <div class='controls right'>
-                                  {{Form::text("kode_transaksi",date('d M Y'),
+                                  {{Form::text("kode_transaksi",date('Y-m-d'),
                                     [
                                     'class'=>'',
                                     'id'=>"tanggal",          
@@ -51,8 +51,13 @@
                           </div>
                          </div><!-- end span -->
                     </div><!-- end row -->
-
+                    <div class='row'> 
+                        {{ HTML::link('#', 'Daftar Suku Cadang Habis ', array('id' => 'schabis', 'class'=>'btn'))}}
+                        {{ HTML::link('#', 'Pesanan Pelanggan ', array('id' => 'schabis', 'class'=>'btn pull-right'))}}
+                        <div class='clearfix'></div>
+                    </div>
                     <div class='row'>
+                        <br>
                         <table id='tabel' class=''>
                             <thead class='alert'style='border:1px #ddd solid'>
                               <th width="100" rowspan="2">Aksi</th>
@@ -97,6 +102,22 @@
                               </tr>
                         </table><!-- end span -->
                         <hr>
+                        <div class='row pull-right'>
+                           <div class='control-group group' id='kode_transaksi-group'>
+
+                           {{Form::label("total","Total",['class'=>' control-label'])}}
+                                <div class='controls right'>
+                                  {{Form::text("kode_transaksi", '0',
+                                    [
+                                    'class'=>'',
+                                    'id'=>"total",  
+                                    'style'=>'text-align:right',        
+                                    'title'=>"total",
+                                    'placeholder'=>"Total"]);
+                            }}   
+                              </div>
+                          </div>
+                        </div>
                     </div> <!-- end row -->
                     
                     <div class='clearfix'></div>
@@ -123,23 +144,22 @@
 @section('js')
 <script type="text/javascript">
 
-    var countries = [   { value: 'Andorra', kode: 'a0832 ds8', harga: '10000' },
+    var countries = [  { value: 'Andorra', kode: 'a0832 ds8', harga: '10000' },
                        { value: 'yondorra', kode: 'i3q832 ds8', harga: '90000' }
                     ];
     var infield = ['#kode_', '#jasa_', '#harga_'];
 
 function autoc(data){
-$(data).autocomplete({
-    lookup: countries,
-    onSelect: function (suggestion) {
-        var numid=data.id;            
-            numid=numid.split('_');
-            var arga=suggestion.harga;
-            $(infield[0]+numid[1]).val(suggestion.kode);
-            $(infield[1]+numid[1]).val(suggestion.value);
-            $(infield[2]+numid[1]).val(suggestion.harga);
-        }
-});
+}
+
+
+function sum(){
+    var tot=0;
+    var count = $("input#harga");
+    for(var i=0; i<count.length; i++){
+      tot = tot + parseInt(count[i].value);
+    }
+    $('#total').tot;
 }
 
 // -------------------------------------------------------------------------
@@ -197,7 +217,20 @@ $(data).autocomplete({
                   }
               });
               }).end().appendTo("table");i++;
+
+              $('.autocomplete').autocomplete({
+                  lookup: countries,
+                  onSelect: function (suggestion) {
+                      var numid=data.id;            
+                          numid=numid.split('_');
+                          $(infield[0]+numid[1]).val(suggestion.kode);
+                          $(infield[1]+numid[1]).val(suggestion.value);
+                          $(infield[2]+numid[1]).val(suggestion.harga);
+                      }
+              });
            }
+
+
     }
 
     function deleteRow(r)
