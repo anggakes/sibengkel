@@ -31,7 +31,7 @@
                                     [
                                     'class'=>'',
                                     'id'=>"tanggal",          
-                                      'title'=>"tanggal",
+                                    'title'=>"tanggal",
                                     'placeholder'=>"Tanggal"]);
                                   }}   
                                 </div>
@@ -113,7 +113,7 @@
                                     'style'=>'text-align:right',        
                                     'title'=>"total",
                                     'placeholder'=>"Total"]);
-                            }}   
+                                  }}   
                               </div>
                           </div>
                         </div>
@@ -143,48 +143,43 @@
 @section('js')
 <script type="text/javascript">
 
-
     var countries = [ {{ $acSukucadang }} ];
-    
-
     var infield = ['#kode_', '#jasa_', '#harga_'];
 
-function sum(){
-    var tot=0;
-    var count = $("input#harga");
-    for(var i=0; i<count.length; i++){
-      tot = tot + parseInt(count[i].value);
+    function sum(){
+        var tot=0;
+        var count = $("input#harga");
+        for(var i=0; i<count.length; i++){
+          tot = tot + parseInt(count[i].value);
+        }
+        $('#total').tot;
     }
-    $('#total').tot;
-}
 
-// -------------------------------------------------------------------------
 
-  $('form#ajaxform').submit(function() {
+    $('form#ajaxform').submit(function() {
 
           if(submit){
-            submit = false;
-            
+              submit = false;
 
-            $.ajax({
-                url : $( 'form#ajaxform' ).prop( 'action' ),
-                type: 'post',
-                cache: false,
-                dataType: 'json',
-                data: $('form#ajaxform').serialize(),
+              $.ajax({
+                  url : $( 'form#ajaxform' ).prop( 'action' ),
+                  type: 'post',
+                  cache: false,
+                  dataType: 'json',
+                  data: $('form#ajaxform').serialize(),
 
-                beforeSend: function() { 
-                   $(".group").removeClass("error");
-                   $(".error-text").html('');
-                },
-                success: function(data) {
-                    
-                },
-                error: function(xhr, textStatus, thrownError) {
-                    alert('Something went to wrong.Please Try again later...');
-                    submit = true;
-                }
-            });
+                  beforeSend: function() { 
+                     $(".group").removeClass("error");
+                     $(".error-text").html('');
+                  },
+                  success: function(data) {
+                      
+                  },
+                  error: function(xhr, textStatus, thrownError) {
+                      alert('Something went to wrong.Please Try again later...');
+                      submit = true;
+                  }
+              });
       }
             return false;
     });
@@ -237,13 +232,6 @@ function sum(){
           alert('Data tidak boleh kosong sama sekali!');
         }
     }
-  /*var i = 1;
-  $("#detailpakai:last").on("focus", "input:last", function(e) {
-    $("table tr:last").clone().find("input").each(function() {
-          $(this).val('').attr('id', function(_, id) { return id + i });
-      }).end().appendTo("table");
-      i++;    
-  });*/
 
 function Hitung (data){ 
   var numid=data.id;            
@@ -253,6 +241,8 @@ function Hitung (data){
   var disc = $('#disc_'+numid[1]).val();
   var jumlah = (qty * harga) - (qty * harga* disc /100);
     $('#jumlah_'+numid[1]).val(jumlah);
+
+    sum();
   }
 
 </script>
