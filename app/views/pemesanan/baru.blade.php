@@ -5,8 +5,8 @@
 @section('content')
 {{HTML::script("assets/jquery.autocomplete.js")}}
 {{HTML::style("assets/CSS/styles.css")}}
-	<div class="span12">
-		<div class="widget widget-nopad">
+  <div class="span12">
+    <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
               <h3> Pemesanan SukuCadang</h3>
             </div>
@@ -14,7 +14,7 @@
             <div class="widget-content">
               <div class="widget big-stats-container">
                 <div class="widget-content span12">
-                  <br> 
+                  <br>
                   <div class="span11">
                     {{Form::open(["route"=>"pemesanan.create","class"=>"form-horizontal","id"=>"ajaxform"])}}  
                       <div class='row'>
@@ -41,7 +41,7 @@
 
                             {{Form::label("no_faktur","Nomor Faktur",['class'=>' control-label'])}}
                               <div class='controls'>
-                                {{Form::text("no_faktur",$nofaktur,
+                                {{Form::number("no_faktur",$nofaktur,
                                   [
                                   'class'=>'',
                                   'id'=>"no_faktur",          
@@ -49,15 +49,23 @@
                                   'placeholder'=>"Nomor Faktur Transaksi"])}}   
                               </div>
                           </div>
+                          <div class='control-group group' id='kode_transaksi-group'>
+
+                            {{Form::label("supply","Supplier",['class'=>' control-label'])}}
+                              <div class='controls'>
+                                {{Form::text("supplier",'',
+                                  [
+                                  'class'=>'',
+                                  'id'=>"supplier",          
+                                  'title'=>"supplier",
+                                  'placeholder'=>"Supplier"])}}   
+
+                              </div>
+                          </div>
                          </div><!-- end span -->
                     </div><!-- end row -->
-                    <div class='row'> 
-                        {{ HTML::link('#', 'Daftar Suku Cadang Habis ', array('id' => 'schabis', 'class'=>'btn'))}}
-                        {{ HTML::link('#', 'Pesanan Pelanggan ', array('id' => 'schabis', 'class'=>'btn pull-right'))}}
-                        <div class='clearfix'></div>
-                    </div>
+
                     <div class='row'>
-                        <br>
                         <table id='tabel' class=''>
                             <thead class='alert'style='border:1px #ddd solid'>
                               <th width="100" rowspan="2">Aksi</th>
@@ -76,11 +84,11 @@
                                   <button type="button" value="Delete" onclick="deleteRow(this)" class='btn btn-danger btn-mini'><i class='btn-icon-only icon-minus-sign'></i></button>
                                 </td>
                                 <td width='160'>
-                                  <input type="text" name="kode[]" class="span2" id="kode_0" placeholder="Kode" style="text-align: left;" readonly required/>
+                                  <input type="text" name="kode[]" class="span2" id="kode_0" placeholder="Kode" style="text-align: left;" onchange="Hitung(this);" readonly required/>
                                   <input type="hidden" name="idsc[]" class="span2" id="idsc_0" placeholder="Kode" style="text-align: left;" required/>
                                 </td>
                                 <td width='180'>
-                                  <input type="text" name="jasa[]" class="span2 autocomplete" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onclick="add_row(this)" onchange="Hitung(this)" required/>                                 
+                                  <input type="text" name="jasa[]" class="span2 autocomplete" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onfocus="add_row(this);" onchange="Hitung(this);" required/>                                 
                                 </td>
                                 <td width='40'>
                                   <input type="number" name="qty[]" class="span1" idx="100" max="200" id="qty_0" title="0" min="1" step="1" placeholder="Quantity" style="text-align: right;width:40px;" value="1" onchange="Hitung(this)" required/>
@@ -106,9 +114,10 @@
 
                            {{Form::label("total","Total",['class'=>' control-label'])}}
                                 <div class='controls right'>
-                                  {{Form::text("kode_transaksi", '0',
+                                  {{Form::number("total", '0',
                                     [
                                     'class'=>'',
+                                    'readonly'=>'true',
                                     'id'=>"total",  
                                     'style'=>'text-align:right',        
                                     'title'=>"total",
@@ -129,12 +138,12 @@
                       </div>
                     {{Form::close()}}
 
-				          
-      				</div>
-			     </div>
-			   </div>
-		</div>
-	</div>  
+                  
+              </div>
+           </div>
+         </div>
+    </div>
+  </div>  
 @stop
 
 
@@ -144,17 +153,8 @@
 <script type="text/javascript">
 
     var countries = [ {{ $acSukucadang }} ];
+    var supplier = [ 'isa', 'nadiah', 'jebot' ];
     var infield = ['#kode_', '#jasa_', '#harga_'];
-
-    function sum(){
-        var tot=0;
-        var count = $("input#harga");
-        for(var i=0; i<count.length; i++){
-          tot = tot + parseInt(count[i].value);
-        }
-        $('#total').tot;
-    }
-
 
     $('form#ajaxform').submit(function() {
 
@@ -180,10 +180,9 @@
                       submit = true;
                   }
               });
-      }
+          }
             return false;
     });
-
 
     function add_row(data)
     {
@@ -209,16 +208,19 @@
               });
               }).end().appendTo("table");i++;
 
-              $('.autocomplete').autocomplete({
-                  lookup: countries,
-                  onSelect: function (suggestion) {
-                      var numid=data.id;            
-                          numid=numid.split('_');
-                          $(infield[0]+numid[1]).val(suggestion.kode);
-                          $(infield[1]+numid[1]).val(suggestion.value);
-                          $(infield[2]+numid[1]).val(suggestion.harga);
-                      }
-              });
+            $(".autocomplete").autocomplete({
+                lookup: countries,
+                onSelect: function (suggestion) {
+                    var numid=data.id;            
+                        numid=numid.split('_');
+                        var arga=suggestion.harga;
+                        $(infield[0]+numid[1]).val(suggestion.kode);
+                        $(infield[1]+numid[1]).val(suggestion.value);
+                        $(infield[2]+numid[1]).val(suggestion.harga);
+                        Hitung(data);
+                    }
+            });
+           }
     }
 
     function deleteRow(r)
@@ -233,17 +235,31 @@
         }
     }
 
-function Hitung (data){ 
-  var numid=data.id;            
-      numid=numid.split('_');
-  var qty = $('#qty_'+numid[1]).val();
-  var harga = $('#harga_'+numid[1]).val();
-  var disc = $('#disc_'+numid[1]).val();
-  var jumlah = (qty * harga) - (qty * harga* disc /100);
-    $('#jumlah_'+numid[1]).val(jumlah);
+    $("#supplier").autocomplete({
+                lookup: supplier,
+                onSelect: function (suggestion) {   }
+            });
 
-    sum();
-  }
+    function Hitung (data){ 
+        var numid=data.id;            
+            numid=numid.split('_');
+        var qty = $('#qty_'+numid[1]).val();
+        var harga = $('#harga_'+numid[1]).val();
+        var disc = $('#disc_'+numid[1]).val();
+        var jumlah = (qty * harga) - (qty * harga* disc /100);
+           $('#jumlah_'+numid[1]).val(jumlah);
+
+            sum();
+    }
+
+    function sum(){
+        var tot=0;
+        var count = $("input[id*='jumlah']");
+        for(var i=0; i<count.length; i++){
+          tot = tot + parseInt(count[i].value);
+        }
+        $('#total').val(tot);
+    }
 
 </script>
 @stop
