@@ -33,3 +33,6 @@ Route::get('sukucadang/{id}/detail',
 Route::get('pemesanan',['as'=>'pemesanan','uses'=>"PemesananController@add"]);
 Route::post('pemesanan',['as'=>'pemesanan.create','uses'=>"PemesananController@create"]);
 Route::get('pemesanan/item/{kode_sc}',['as'=>'pemesanan.item','uses'=>"PemesananController@item"]);
+
+/* autocomplete API*/
+Route::get('autocomplete/sukucadang',['as'=>'autocomplete.sukucadang','uses'=>'AutocompleteController@sukucadang']);
