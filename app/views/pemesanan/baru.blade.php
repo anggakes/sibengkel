@@ -5,8 +5,8 @@
 @section('content')
 {{HTML::script("assets/jquery.autocomplete.js")}}
 {{HTML::style("assets/CSS/styles.css")}}
-	<div class="span12">
-		<div class="widget widget-nopad">
+  <div class="span12">
+    <div class="widget widget-nopad">
             <div class="widget-header"> <i class="icon-list-alt"></i>
               <h3> Pemesanan SukuCadang</h3>
             </div>
@@ -108,12 +108,12 @@
                       </div>
                     {{Form::close()}}
 
-				          
-      				</div>
-			     </div>
-			   </div>
-		</div>
-	</div>  
+                  
+              </div>
+           </div>
+         </div>
+    </div>
+  </div>  
 @stop
 
 
