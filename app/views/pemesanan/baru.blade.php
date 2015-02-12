@@ -27,7 +27,7 @@
                             <div class='control-group group' id='kode_transaksi-group'>
                               {{Form::label("tanggal","Tanggal",['class'=>' control-label'])}}
                                 <div class='controls right'>
-                                  {{Form::text("kode_transaksi",date('d M Y'),
+                                  {{Form::text("kode_transaksi",date('Y-M-d'),
                                     [
                                     'class'=>'',
                                     'id'=>"tanggal",          
@@ -75,17 +75,16 @@
                                   <input type="hidden" name="idsc[]" class="span2" id="idsc_0" placeholder="Kode" style="text-align: left;" required/>
                                 </td>
                                 <td width='180'>
-                                  <input type="text" name="jasa[]" class="span2 autocomplete" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onclick="add_row(this)" onkeydown="autoc(this)" required/>
-                                  
+                                  <input type="text" name="jasa[]" class="span2 autocomplete" id="jasa_0" placeholder="Nama Jasa" style="text-align: left;" onclick="add_row(this)" onchange="Hitung(this)" required/>                                 
                                 </td>
                                 <td width='40'>
-                                  <input type="number" name="qty[]" class="span1" idx="100" max="200" id="qty_0" title="0" min="1" step="1" placeholder="Quantity" style="text-align: right;width:40px;" value="1" required/>
+                                  <input type="number" name="qty[]" class="span1" idx="100" max="200" id="qty_0" title="0" min="1" step="1" placeholder="Quantity" style="text-align: right;width:40px;" value="1" onchange="Hitung(this)" required/>
                                 </td>
                                 <td width='150'>
                                   <input type="number" name="harga[]" class="span2" id="harga_0" akuma="90" min="100" step="500" placeholder="Harga" style="text-align: right;" readonly required/>
                                 </td>
                                 <td width='40'>
-                                  <input type="number" name="disc[]" class="" id="disc_0" value="0" min="0" max="100" step="1" placeholder="Discount" style="text-align: right;width:50px;" required/>
+                                  <input type="number" name="disc[]" class="" id="disc_0" value="0" min="0" max="100" step="1" placeholder="Discount" style="text-align: right;width:50px;" onchange="Hitung(this)" required/>
                                 </td>
                                 <td width='390' style="text-align:right;">
                                   <input type="number" value="0" name="jumlah[]" class="span2 jumlah" id="jumlah_0" min="0" step="100" placeholder="Jumlah" style="text-align: right;" readonly required/>
@@ -189,6 +188,7 @@
               });
               }).end().appendTo("table");i++;
 
+
             $(data).autocomplete({
                 lookup: countries,
                 onSelect: function (suggestion) {
@@ -200,6 +200,7 @@
                         $(infield[2]+numid[1]).val(suggestion.harga);
                     }
             });
+
 
            }
     }
@@ -222,6 +223,16 @@
       }).end().appendTo("table");
       i++;    
   });*/
+
+function Hitung (data){ 
+  var numid=data.id;            
+      numid=numid.split('_');
+  var qty = $('#qty_'+numid[1]).val();
+  var harga = $('#harga_'+numid[1]).val();
+  var disc = $('#disc_'+numid[1]).val();
+  var jumlah = (qty * harga) - (qty * harga* disc /100);
+    $('#jumlah_'+numid[1]).val(jumlah);
+  }
 
 </script>
 @stop
